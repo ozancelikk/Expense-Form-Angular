@@ -1,0 +1,59 @@
+.shadow-lg {
+    box-shadow: 0 10rem 4rem rgb(0 0 0 / 18%) !important;
+}
+@media (min-width: 1024px)
+{
+.contact-info__wrapper {
+    border-radius: 0 0.625rem 0.625rem 0;
+    padding: 2rem !important;
+}
+}
+.contact-info__wrapper {
+    overflow: hidden;
+    border-radius: 0.625rem 0.625rem 0 0;
+}
+.gradient-brand-color {
+    background-image: -webkit-linear-gradient(50deg, #e69d6de0 30%, #eb581eef 100%);
+    color: #fff;
+}
+gutters>[class*=col-] {
+    padding-right: 0;
+    padding-left: 0;
+}
+ul.contact-info__list.list-style--none.position-relative.z-index-101 {
+    list-style-type: none;
+}
+.list-style--none {
+    list-style: none;
+}
+.z-index-101 {
+    z-index: 101;
+}
+.accounttext:hover {
+    background-position: 0;
+    background-color: #ffffff6b;
+    color: black;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    -webkit-box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 75%);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 12%);
+}
+.accounttext {
+    background-size: 200% 100%;
+    background-position: -100%;
+    display: inline-block;
+    padding: 2px 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 6px;
+    padding-top: 6px;
+    position: relative;
+    color: #e9ecef;
+    transition: all 0.3s ease-in-out;
+}
+ul.contact-info__list.list-style--none.position-relative.z-index-101 {
+    list-style-type: none;
+}

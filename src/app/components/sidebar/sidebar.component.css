@@ -1,0 +1,86 @@
+/* .show-sidebar aside {
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+    -webkit-box-shadow: 4px 0px 5px 0px rgb(0 0 0 / 42%);
+    -moz-box-shadow: 4px 0px 5px 0px rgba(0,0,0,0.42);
+    box-shadow: 4px 0px 5px 0px rgb(0 0 0 / 42%);
+}
+aside {
+    width: calc(18%);
+    left: 0;
+    border-top-right-radius: 11px;
+    z-index: 1001;
+    position: fixed;
+    -webkit-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    transform: translateX(-100%);
+    background: linear-gradient(45deg, #0C2081, #2d44c4a2);
+}
+aside, main {
+    height: 100vh;
+    min-height: 580px;
+}
+aside {
+    display: block;
+}
+.show-sidebar aside .toggle {
+    padding-left: 30px;
+    padding-top: 11px;
+    position: absolute;
+    right: 0;
+    -webkit-transform: translateX(-28%);
+    -ms-transform: translateX(-28%);
+    transform: translateX(-28%);
+}
+aside .toggle {
+    padding-left: 30px;
+    padding-top: 7px;
+    position: absolute;
+    right: 0;
+    -webkit-transform: translateX(112%);
+    -ms-transform: translateX(112%);
+    transform: translateX(112%);
+}
+.show-sidebar svg.fill-color.bi.bi-layout-sidebar-inset {
+    transform: rotate(360deg);
+}
+svg.fill-color.bi.bi-layout-sidebar-inset {
+    transform: rotate(180deg);
+}
+.show-sidebar aside .fill-color {
+    fill: white;
+}
+aside .fill-color {
+    fill: rgb(110,133,254);
+    fill: linear-gradient(186deg, rgba(110,133,254,0.89) 0%, rgba(61,83,194,1) 71%, rgba(5,26,126,1) 100%);
+}
+aside .side-inner {
+    padding: 66px 0;
+    height: 100vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+#search-input {
+    font-size: 13px;
+    padding: 18px;
+}
+aside .side-inner .nav-menu ul, aside .side-inner .nav-menu ul li {
+    padding: 0;
+    margin: 0px;
+    list-style: none;
+}
+aside .side-inner .nav-menu ul li a {
+    display: block;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+    line-height: 9px;
+    padding-bottom: 10px;
+    color: #ffffff;
+    position: relative;
+    -webkit-transition: .3s padding-left ease;
+    -o-transition: .3s padding-left ease;
+    transition: .3s padding-left ease;
+}
+ */

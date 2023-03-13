@@ -1,0 +1,101 @@
+<a class="card-info" style="float: right;">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+    <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+  </svg>  
+</a>
+<h2>{{lang.customerinformations}}</h2>
+
+<form [formGroup]="customerInformationsAddForm">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label >{{lang.title}}</label>
+        <input type="text" formControlName="title" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label>{{lang.company}}</label>
+        <input type="text" formControlName="company" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label>{{lang.firstname}}</label>
+        <input type="text" formControlName="firstName" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label>{{lang.lastname}}</label>
+        <input type="text" formControlName="lastName" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label>{{lang.email}}</label>
+        <input type="text" formControlName="eMail" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label>{{lang.address}}</label>
+        <input type="text" formControlName="address" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label>{{lang.city}}</label>
+        <input type="text" formControlName="city" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label>{{lang.zipcode}}</label>
+        <input type="text" formControlName="zipCode" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label>{{lang.country}}</label>
+        <input type="text" formControlName="country" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+      <div class="form-group">
+        <label>{{lang.state}}</label>
+        <input type="text" formControlName="state" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col-12">
+      <div class="form-group">
+        <label>{{lang.phone}}</label>
+        <input type="text" formControlName="phone" class="form-control" >
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="form-group">
+        <label>{{lang.comments}}</label>
+        <textarea type="textarea" formControlName="comments" rows="4" class="form-control" > </textarea>
+      </div>
+    </div>
+  </div>
+  
+    <div class="modal-footer">
+    
+      <button type="button" *ngIf="updateCutomerInformations==false" (click)="add()" class="btn btn-primary oriana-button" >{{lang.add}}</button>
+      <button type="button" *ngIf="updateCutomerInformations==true" (click)="update()" class="btn btn-primary oriana-button" >{{lang.update}}</button>
+    </div>                    
+  </form>

@@ -1,0 +1,28 @@
+.form{
+    width: 50%;
+    margin-left: 3%;
+    padding-top: 5%;
+    /* background: linear-gradient(45deg, #0C2081, #2d44c4a2); */
+}
+.mb-3{
+    width: 50%;
+    float: left;
+    margin-left: 1%;
+    padding-right:5% ;
+}
+
+.mb-3 button{
+    margin-left: 20%;
+    margin-top: 10%;
+    width: 130px;
+    height: 50px;
+
+}
+input{
+    text-align: left;
+    height: 50px;
+}
+select{
+    height: 50px;
+}
+

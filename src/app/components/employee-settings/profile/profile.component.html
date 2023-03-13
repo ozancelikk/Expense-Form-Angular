@@ -1,0 +1,14 @@
+    <ag-grid-angular
+    style="width: 100%; height: 500px;"
+    class="ag-theme-alpine"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [animateRows]="true"
+    [sideBar]="sideBar"
+    [enableCellTextSelection]="true"
+    [ensureDomOrder]="true"
+    [rowData]="rowData"
+    [rowDragManaged]="true"
+    [pagination]="true"
+    (gridReady)="onGridReady()"
+    ></ag-grid-angular>

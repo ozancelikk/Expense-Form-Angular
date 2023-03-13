@@ -1,0 +1,71 @@
+<div class="container-fluid">
+    <div class="left">
+  <form [formGroup]="paymentAddForm" class="form">
+
+    <div class="mb-3">
+      <label for="employeeId">{{lang.employees}}</label>
+      <select id="employeeId"
+      formControlName="employeeId"
+      class="form-control">
+        <option value="" disabled>{{lang.employees}}</option>
+        <option *ngFor="let employee of employees" [ngValue]="employee.id">{{employee.name}}</option>
+      </select>
+    </div>
+  
+    <div class="mb-3">
+          <label for="amount">{{lang.amount}}</label>
+          <div class="form-group">
+            <input
+            
+              type="number"
+              id="amount"
+              formControlName="amount"
+              class="form-control"
+              placeholder="{{lang.amount}}"
+            />
+          </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="paymentChoices">{{lang.paymentChoices}}</label>
+        <div class="form-group">
+          <select class="form-select" aria-label="Default select example" formControlName="paymentChoices" class="form-control" id="secenek" >
+            <option>{{lang.cash}}</option>
+            <option>{{lang.wage}}</option>
+            <option>{{lang.transfer}}</option>
+          </select>
+        </div>
+     </div>
+     
+        <div class="mb-3">
+          <label class="label-default" for="description">{{lang.description}}</label>
+          <div class="form-group">
+            <textarea
+            type="text"
+            id="description"
+            formControlName="description"
+            class="form-control"
+            placeholder="{{lang.description}}"
+            >
+            </textarea>
+          </div>
+        </div>
+        <div class=" mb-3">
+            <div class="form-group">
+              <label for="pay">{{lang.pay}}</label> <br>
+              <label class="switch">
+                <input type="checkbox" formControlName="pay" >
+                <span class="slider round"></span>
+              </label>
+            </div> 
+        </div>
+
+        <div class="mb-3">
+          <button type="button" class="btn btn-danger" id="buton" (click)="add()">{{lang.add}}</button>
+        </div>
+      </form>
+    </div>
+    <div class="right"> 
+      <app-vouncher></app-vouncher>>
+    </div>
+  </div>

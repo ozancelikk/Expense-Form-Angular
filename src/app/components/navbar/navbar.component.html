@@ -1,0 +1,33 @@
+<nav>
+  <div class="container-fluid topbar">
+    <div class="row">
+ 
+          <div class="col-5">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb bg-transparent">
+                <li class="breadcrumb-item"><a [routerLink]="['/admin/dashboard']">Expense Form</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{menuItems}}</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-7">
+            <ul class="nav nav-tabs  justify-content-end" *ngIf="isNavbarLoad">
+              <!-- <li class="nav-item mr-1">
+                <a class="nav-link active" (click)="updateAllUnReadMessage()" routerLink="/admin/system-logs">   <i class="bi bi-bell-fill"></i>{{systemLogs.length}}</a>
+              </li> -->
+              <li class="nav-item dropleft">
+                <a class="nav-link  active" data-toggle="dropdown" > <i class="bi bi-sliders"></i> </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" [routerLink]="['/admin/settings/users']"><i class="bi bi-people-fill"></i> {{lang.users}}</a>
+                  <a class="dropdown-item" [routerLink]="['/admin/settings/employees']"><i class="bi bi-people-fill"></i> {{lang.employees}}</a>
+                  <a class="dropdown-item" [routerLink]="['/admin/settings/customer-informations']"><i class="bi bi-gear-fill"></i> {{lang.settings}}</a>
+                  <a class="dropdown-item" (click)="Logout()"><i class="bi bi-box-arrow-right"></i> {{lang.logout}}</a>
+                </div>
+              </li>
+             
+            </ul>
+          </div>
+ 
+    </div>
+  </div>
+</nav>

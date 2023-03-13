@@ -1,0 +1,138 @@
+<div class="container-fluid">
+  <div class="left">
+<form [formGroup]="voucherAddForm" class="form">
+
+    <div class="mb-3">
+        <label for="documentDate">{{lang.voucherDate}}</label>
+        <div class="form-group">
+          <input
+            type="date"
+            id="documentDate"
+            formControlName="documentDate"
+            class="form-control"
+            placeholder="{{lang.voucherDate}}"
+          />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="vouncherNo">{{lang.vouncherno}}</label>
+        <div class="form-group">
+          <input
+            type="vouncherNo"
+            id="vouncherNo"
+            formControlName="vouncherNo"
+            class="form-control"
+            placeholder="{{lang.vouncherno}}"
+          />
+        </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="company">{{lang.company}}</label>
+      <div class="form-group">
+        <input
+          type="text"
+          id="company"
+          formControlName="company"
+          class="form-control"
+          placeholder="{{lang.company}}"
+        />
+      </div>
+    </div>
+  <div class="mb-3">
+      <label for="vouncherType">{{lang.voucherType}}</label>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" formControlName="vouncherType" class="form-control" placeholder="Fiş Türünü Giriniz" id="secenek">
+          <option>{{lang.food}}</option>
+          <option>{{lang.fuel}}</option>
+          <option>{{lang.health}}</option>
+          <option>{{lang.stationary}}</option>
+          <option>{{lang.taxi}}</option>
+          <option>{{lang.road}}</option>
+          <option>{{lang.market}}</option>
+          <option>{{lang.honor}}</option>
+          <option>{{lang.otherExpenses}}</option>
+        </select>
+      </div>
+   </div>
+   
+   <div class="mb-3">
+    <label for="total" class="label1">{{lang.totalTaxFreeAmount}}</label>
+    <div class="form-group">
+      <input
+        type="number"
+        id="total"
+        [(ngModel)]="total"(change)="valuechange($event)"
+        formControlName="total"
+        class="form-control"
+        placeholder="{{lang.totalTaxFreeAmount}}"
+      />
+    </div>
+  </div>
+    <div class="mb-3">
+      <label for="taxRate">{{lang.taxrate}}</label>
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example" #mySelect [(ngModel)]="taxRate" (change)="valuechange(mySelect.value)" formControlName="taxRate" class="form-control" placeholder="KDV" >
+          <option [value]="1" selected >%1</option>
+          <option [value]="8">%8</option>
+          <option [value]="18">%18</option>
+        </select>
+      </div>
+    </div>
+      <div class="mb-3">
+        <label class="label-default" for="taxTotal">{{lang.total}}</label>
+        <div class="form-group">
+          <input
+            type="button"
+            [ngModel]="taxTotal" 
+            id="taxTotal"
+            formControlName="taxTotal"
+            class="form-control"
+            placeholder="{{lang.total}}"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="taxSum" >{{lang.totalTaxAmount}}</label>
+        <div class="form-group">
+          <input 
+            type="button"
+            [(ngModel)]="taxSum"(change)="valuechange($event)" 
+            id="taxTotal"
+            formControlName="taxSum"
+            class="form-control"
+            placeholder="{{lang.totalTaxAmount}}"
+          />
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="vouncherImage">{{lang.vouncherimage}}</label>
+        <div class="form-group">
+          <input
+            type="file"
+            id="vouncherImage"
+            formControlName="vouncherImage"
+            class="form-control"
+            placeholder="{{lang.vouncherimage}}"
+          />
+        </div>
+      </div>
+      <div class=" mb-3">
+        <div class="form-group">
+          <label for="pay">{{lang.pay}}</label> <br>
+          <label class="switch">
+            <input type="checkbox" formControlName="pay" >
+            <span class="slider round"></span>
+          </label>
+        </div> 
+    </div>
+      <div class="mb-3">
+        <button type="button" class="btn btn-danger" id="buton" (click)="add()">{{lang.add}}</button>
+        <!-- <button type="button" class="btn btn-danger" id="buton" (click)="imageAdd(vouncherImage)">Hi</button> -->
+      </div>
+    </form>
+  </div>
+  <div class="right">
+    <app-vouncher></app-vouncher>
+</div>

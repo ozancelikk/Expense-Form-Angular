@@ -1,0 +1,160 @@
+<ag-grid-angular
+style="width: 100%; height: 93vh;"
+class="ag-theme-alpine"
+[columnDefs]="columnDefs"
+[defaultColDef]="defaultColDef"
+[animateRows]="true"
+[sideBar]="sideBar"
+[enableCellTextSelection]="true"
+[ensureDomOrder]="true"
+[rowData]="rowData"
+[rowDragManaged]="true"
+[pagination]="true"
+(gridReady)="onGridReady($event)"
+>
+
+
+</ag-grid-angular>
+
+
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="voucherAddForm">
+
+            <div class="mb-3">
+                <label for="documentDate">Fiş tarihi</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    id="documentDate"
+                    formControlName="documentDate"
+                    class="form-control"
+                    placeholder="Fiş Tarihini giriniz"
+                  />
+                </div>
+            </div>
+        
+            <div class="mb-3">
+                <label for="vouncherNo">Fiş Numarası</label>
+                <div class="form-group">
+                  <input
+                    type="vouncherNo"
+                    id="vouncherNo"
+                    formControlName="vouncherNo"
+                    class="form-control"
+                    placeholder="Fiş numarasını giriniz"
+                  />
+                </div>
+            </div>
+        
+            <div class="mb-3">
+              <label for="company">şirket adı</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="company"
+                  formControlName="company"
+                  class="form-control"
+                  placeholder="şirket adı"
+                />
+              </div>
+            </div>
+          <div class="mb-3">
+              <label for="vouncherType">Fiş Türü</label>
+              <div class="form-group">
+                <input
+                  type="text"
+                  id="vouncherType"
+                  formControlName="vouncherType"
+                  class="form-control"
+                  placeholder="Fiş Türünü Giriniz"
+                />
+              </div>
+           </div>
+           
+           <div class="mb-3">
+            <label for="total" class="label1">KDV'siz Tutar</label>
+            <div class="form-group">
+              <input
+                type="number"
+                id="total"
+                [(ngModel)]="total"(change)="valuechange($event)"
+                formControlName="total"
+                class="form-control"
+                placeholder="Toplam"
+              />
+            </div>
+          </div>
+            <div class="mb-3">
+              <label for="taxRate">KDV oranını Seçiniz</label>
+              <div class="form-group">
+                <select class="form-select" aria-label="Default select example" #mySelect [(ngModel)]="taxRate" (change)="valuechange(mySelect.value)" formControlName="taxRate" class="form-control" placeholder="KDV" id="secenek">
+                  <option selected>KDV Oranını Giriniz</option>
+                  <option [value]="1" >%1</option>
+                  <option [value]="8">%8</option>
+                  <option [value]="18">%18</option>
+                </select>
+              </div>
+            </div>
+              <div class="mb-3">
+                <label class="label-default" for="taxTotal">KDV Toplamı</label>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    [ngModel]="taxTotal" 
+                    id="taxTotal"
+                    formControlName="taxTotal"
+                    class="form-control"
+                    placeholder="Vergi Toplamı"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="taxSum" >KDV'li Tutar</label>
+                <div class="form-group">
+                  <input
+                    type="number"
+                    [(ngModel)]="taxSum"(change)="valuechange($event)" 
+                    id="taxTotal"
+                    formControlName="taxSum"
+                    class="form-control"
+                    placeholder="KDV'li Tutar"
+                  />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="vouncherImage">Fiş Resmi</label>
+                <div class="form-group">
+                  <input
+                    type="file"
+                    id="vouncherImage"
+                    formControlName="vouncherImage"
+                    class="form-control"
+                    placeholder="Fiş Resmi"
+                  />
+                </div>
+              </div>
+              
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="add()"data-dismiss="modal">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>

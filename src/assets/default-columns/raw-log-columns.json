@@ -1,0 +1,7 @@
+[
+    {"field":"currentDate","headerName":"currentDate","unSortIcon": true},
+    {"field":"currentTime","headerName":"currentTime","unSortIcon": true},
+    {"field":"usedDeviceBrand","headerName":"usedDeviceBrand","unSortIcon": true},
+    {"field":"usedDeviceModel","headerName":"usedDeviceModel","unSortIcon": true},
+    {"field":"log","headerName":"log","unSortIcon": true}
+]

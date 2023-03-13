@@ -1,0 +1,4 @@
+{
+    "toolPanels": ["columns", "filters"],
+    "defaultToolPanel": ""
+  }

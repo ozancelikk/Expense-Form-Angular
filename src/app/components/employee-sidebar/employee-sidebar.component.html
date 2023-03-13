@@ -1,0 +1,79 @@
+<aside class="sidebar">
+    <div _ngcontent-cya-c48="" style="text-align: center;">
+      <div class="toggle">
+        <a href="#" class="burger js-menu-toggle" (click)="toggleSidebar()" data-toggle="collapse" data-target="#main-navbar">
+          <svg class="fill-color bi bi-layout-sidebar-inset" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 16 16">
+            <path d="M14 2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12zM2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2z"/>
+            <path d="M3 4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4z"/>
+          </svg>
+            </a>
+      </div>
+    <img _ngcontent-cya-c48="" [routerLink]="['/admin/dashboard']" src="/assets/images/oriana-logo.png" width="150px" alt="Oriana Log" >
+    <div class="languages"> 
+      <a (click)="changeLanguage('tr')" class="language">
+        <img src="/assets/images/turkey.png" alt=""> 
+      </a>  
+      <a (click)="changeLanguage('en')"  class="language">
+        <img src="/assets/images/united-kingdom.png" alt=""> 
+      </a>
+    </div>
+  </div>
+  
+      <div class="side-inner">      
+       
+          <div class="input-group p-3"> 
+            <input type="text" class="form-control" [(ngModel)]="searchInput" (keyup)="searchsidebar()"  (keydown)="searchsidebar()" id="search-input" placeholder="{{lang.searchmenu}}">
+            <div class="input-group-append">
+               
+            </div>
+        </div>
+        <div class="nav-menu">
+          <ul id="searchInput">
+            <ng-container  *ngFor="let menu of menus">
+              <ng-container *ngIf="menu.children != undefined">
+                <li class="accordion">
+                  <a href="#" data-toggle="collapse" [attr.data-target]="'#'+menu.icon" aria-expanded="false" aria-controls="collapseTwo" class="collapsible collapsed">
+                    <mat-icon>{{menu.icon}}</mat-icon>
+                  <span class="sidebar-menu-name"> {{menu.name}}</span>  
+                  </a>
+                  <div [id]="menu.icon" class="collapse" aria-labelledby="headingOne">
+                    <div>
+                      <ul>
+                        <li *ngFor="let children of menu.children">
+                          <a [routerLink]="children.path" > 
+                            <mat-icon>{{children.icon}}</mat-icon>
+                          {{children.name}}
+                       </a>
+                      </li>
+                      </ul>
+                    </div>
+                  </div>      
+               </li>  
+              </ng-container>
+              <ng-container *ngIf="menu.children == undefined">
+                <li class="active">
+                  <a [routerLink]="menu.path"  >
+                    <mat-icon>{{menu.icon}}</mat-icon>
+                    {{menu.name}}
+                </a>
+                </li>
+            </ng-container>
+            </ng-container>
+          </ul>
+        </div>
+        <div class="d-flex align-items-center justify-content-center footer">
+          <div class="p-2 bd-highlight"><span class="font-weight-bold">ORIANA</span> <span style="color: var(--gray62);"> EXPENSE FORM</span> <div class="text-center">
+            <!-- <div class="languages"> 
+            <a (click)="changeLanguage('tr')" class="language">
+              <img src="/assets/images/turkey.png" alt=""> 
+            </a>  
+            <a (click)="changeLanguage('en')"  class="language">
+              <img src="/assets/images/united-kingdom.png" alt=""> 
+            </a>
+          </div> -->
+          </div>
+        </div> 
+        </div>
+      </div>   
+                  
+    </aside>

@@ -1,0 +1,56 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Receipt } from 'src/app/models/receipt/receipt';
+import { ReceiptImage } from 'src/app/models/receipt/receiptImage';
+import { ReceiptService } from 'src/app/services/receipt/receipt.service';
+
+@Component({
+  selector: 'app-receipt-detail',
+  templateUrl: './receipt-detail.component.html',
+  styleUrls: ['./receipt-detail.component.css']
+})
+export class ReceiptDetailComponent implements OnInit {
+  receipt:Receipt;
+  receiptImage:ReceiptImage[];
+
+  constructor(
+    private receiptService:ReceiptService,
+    private activatedRoute:ActivatedRoute,
+  ) { }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(param=>{
+      this.getById(param["id"]);
+      this.getImagesByReceiptId(param["id"])
+    })
+  }
+
+  getById(id:string){
+    this.receiptService.getById(id).subscribe(response=>{
+      if (response.success) {
+        this.receipt=response.data
+        console.log(this.receipt)  
+      }else{
+        console.log(response.message)
+      }
+      
+    })
+  }
+
+  getImagesByReceiptId(receiptId:string){
+    this.receiptService.getImagesByReceiptId(receiptId).subscribe(response=>{
+      if (response.success) {
+       this.receiptImage=response.data
+       console.log(this.receiptImage) 
+      }else{
+        console.log(response.message)
+      }
+    })
+  }
+  
+  getImage(receiptImage:ReceiptImage){
+    let url="https://localhost:44357/Uploads/Receipts/"+receiptImage.imagePath
+    return url;
+  }
+
+}
