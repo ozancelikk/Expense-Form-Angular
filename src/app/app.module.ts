@@ -34,10 +34,10 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { VouncherComponent } from './components/vouncher/vouncher.component';
+import { VouncherComponent, VouncherDeleteDialogTemplate } from './components/vouncher/vouncher.component';
 import { NewVouncherComponent } from './components/navbar/new-vouncher/new-vouncher.component';
 import { VouncheraddComponent } from './components/vouncheradd/vouncheradd.component';
-import { ReceiptComponent } from './components/receipt/receipt.component';
+import { ReceiptComponent, ReceiptDeleteDialogTemplate } from './components/receipt/receipt.component';
 import { ReceiptAddComponent } from './components/receipt/receiptAdd/receipt-add/receipt-add.component';
 import { EmployeeComponent, EmployeeDeleteDialogTemplate } from './components/settings/employee/employee.component';
 import { AddEmployeeComponent } from './components/settings/employee/add-employee/add-employee.component';
@@ -62,6 +62,7 @@ import { EmployeeChangePasswordComponent } from './components/settings/employee/
 import { UpdateVouncherComponent } from './components/vouncher/update-vouncher/update-vouncher.component';
 import { ReceiptDetailComponent } from './components/receipt/receipt-detail/receipt-detail.component';
 import { UserpermissionsComponent } from './components/userpermissions/userpermissions.component';
+
 
 
 
@@ -123,6 +124,8 @@ import { UserpermissionsComponent } from './components/userpermissions/userpermi
        UpdateVouncherComponent,
        ReceiptDetailComponent,
        UserpermissionsComponent,
+       VouncherDeleteDialogTemplate,
+       ReceiptDeleteDialogTemplate,
 
   
   ],

@@ -1,10 +1,9 @@
 .form{
     width: 46%;
     margin-left: 3%;
-    padding-top: 5%;
-    /* background: linear-gradient(45deg, #0C2081, #2d44c4a2); */
-}
-.mb-3{
+    padding-top: 5%; 
+} 
+ .mb-3{
     width: 40%;
     float: left;
     margin-left: 5%;
@@ -25,4 +24,5 @@ input{
 select{
     height: 50px;
 }
+
 

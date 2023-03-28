@@ -1,4 +1,6 @@
 export interface ILanguage{
+    pdf:string;
+    deleteVouncher:string;
     receiptDetail:string;
     addNewEmployee:string;
     vouncherDetail:string;

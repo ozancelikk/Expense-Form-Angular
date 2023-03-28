@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { ChangePasswordComponent } from 'src/app/components/settings/user/change-password/change-password.component';
 import { Employee } from 'src/app/models/employee/employee';
 import { ListResponseModel } from 'src/app/models/listResponseModel';
+import { ResponseModel } from 'src/app/models/responseModel';
 import { SingleResponseModel } from 'src/app/models/singleResponseModel';
+import { AddImage } from 'src/app/models/vouncher/addImage';
 import { VoucherGetDto } from 'src/app/models/vouncher/voucherGetDto';
 import { VoucherImage } from 'src/app/models/vouncher/voucherImage';
 import { Vouncher } from 'src/app/models/vouncher/vouncher';
@@ -26,8 +28,8 @@ export class VouncherService  extends OrianaHttpClientService<ListResponseModel<
    getAll(apiRoute:string){  
     return this.httpClient.get<ListResponseModel<Vouncher>>(this.apiUrl + apiRoute);
    }
-   add(voucher:Vouncher){
-    return this.httpClient.post<ListResponseModel<Vouncher>>(this.apiUrl+"Voucher/Add",voucher)
+   add(voucher:Vouncher):Observable<SingleResponseModel<string>>{
+    return this.httpClient.post<SingleResponseModel<string>>(this.apiUrl+"Voucher/Add",voucher)
    }
    getAllVoucher(apiRoute:string){  
     return this.httpClient.get<ListResponseModel<VoucherGetDto>>(this.apiUrl + apiRoute);
@@ -39,7 +41,13 @@ export class VouncherService  extends OrianaHttpClientService<ListResponseModel<
    getImagesByVouncherId(vouncherId:string):Observable <ListResponseModel<VoucherImage>>{
       return this.httpClient.get<ListResponseModel<VoucherImage>>(this.apiUrl+"VouncherImage/GetByImagesByVouncherId?id="+vouncherId);
    }
-   Imageadd(voucherImage:VoucherImage){
-    return this.httpClient.post<ListResponseModel<VoucherImage>>(this.apiUrl+"VoucherImage/AddImage",voucherImage)
+   imageAdd(addImage:AddImage):Observable<ResponseModel> {
+    const formData = new FormData();
+    formData.append("image",addImage.image)
+    formData.append("voucherId",addImage.voucherId)
+    return this.httpClient.post<ResponseModel>(this.apiUrl+"VouncherImage/AddImage",formData);
+  }
+   getDetailsByEmployeeId(id:string){
+    return this.httpClient.get<ListResponseModel<VoucherGetDto>>(this.apiUrl+"Voucher/GetDetailsByEmployeeId?id="+id)
    }
 }

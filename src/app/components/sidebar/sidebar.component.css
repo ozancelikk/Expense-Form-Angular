@@ -84,3 +84,6 @@ aside .side-inner .nav-menu ul li a {
     transition: .3s padding-left ease;
 }
  */
+ img{
+    cursor: pointer;
+ }

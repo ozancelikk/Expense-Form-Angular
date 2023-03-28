@@ -111,6 +111,7 @@
         <div class="form-group">
           <input
             type="file"
+            (change)="onChange($event)"
             id="vouncherImage"
             formControlName="vouncherImage"
             class="form-control"
@@ -118,7 +119,7 @@
           />
         </div>
       </div>
-      <div class=" mb-3">
+      <div class=" mb-3" *ngIf="isAdmin()">
         <div class="form-group">
           <label for="pay">{{lang.pay}}</label> <br>
           <label class="switch">

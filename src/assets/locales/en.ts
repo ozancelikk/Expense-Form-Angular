@@ -1,6 +1,8 @@
 import { ILanguage } from "./ILanguage";
 
 export class EN implements ILanguage {
+    pdf:string="Pdf";
+    deleteVouncher:string="Are You Sure Want To Delete";
     receiptDetail:string="Receipt Detail"
     addNewEmployee:string="Add New Employee";
     vouncherDetail:string="Vouncher Detail";

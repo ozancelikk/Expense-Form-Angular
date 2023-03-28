@@ -5,8 +5,6 @@ import { PaymentService } from 'src/app/services/payment/payment.service';
 import { PDFExporter } from 'src/app/services/pdfExporter/pdf-exporter';
 import { ILanguage } from 'src/assets/locales/ILanguage';
 import { Languages } from 'src/assets/locales/languages';
-import { EmployeeLoginComponent } from '../employee-login/employee-login.component';
-import { LoginComponent } from '../login/login.component';
 
 @Component({
   selector: 'app-payment',
@@ -22,6 +20,7 @@ export class PaymentComponent implements OnInit {
   /*-----------------------------------------------------------*/
   public columnDefs: (ColDef | ColGroupDef)[] = [
     {field:"employee",headerName:this.lang.employeeId,unSortIcon: true,cellRenderer:(param) => { 
+      console.log(param)
       return  param.data.employee.name
      }},
     {field:"amount",headerName:this.lang.amount,unSortIcon: true,},
@@ -55,6 +54,10 @@ export class PaymentComponent implements OnInit {
     console.log(params)
     this.gridApi=params.api;
     this.columnApi=params.columnApi;
+    this.getall();
+    
+  }
+  getall(){
     if(localStorage.getItem("employeeid")){
       this.paymentService.getAllByEmployeeId(localStorage.getItem("employeeid")).subscribe(response => {
         if (response.success) {
@@ -80,7 +83,6 @@ export class PaymentComponent implements OnInit {
         console.log(errorResponse)
       })
     }  
-    
   }
 
   openPDF(){

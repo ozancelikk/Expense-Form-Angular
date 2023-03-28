@@ -1,3 +1,9 @@
+<div style="text-align: center;">
+  <input type="button" class="btn btn-danger" value="Pdf" (click)="openPDF()" />
+</div>
+<div style="text-align: center;">
+  <input type="button" class="btn btn-danger" value="Excel" (click)="openExcel()" />
+</div>
 <ag-grid-angular
 style="width: 100%; height: 93vh;"
 class="ag-theme-alpine"
@@ -13,11 +19,6 @@ class="ag-theme-alpine"
 (gridReady)="onGridReady($event)"
 #htmlData
 ></ag-grid-angular>
-<div style="text-align: center;">
-    <input type="button" class="btn btn-danger" value="Pdf" (click)="openPDF()" />
-  </div>
-  <div style="text-align: center;">
-    <input type="button" class="btn btn-danger" value="Excel" (click)="openExcel()" />
-  </div>
+
 
   
