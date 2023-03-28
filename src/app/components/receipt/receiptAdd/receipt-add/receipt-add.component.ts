@@ -15,6 +15,8 @@ export class ReceiptAddComponent implements OnInit {
   receiptAddForm:FormGroup;
   total:number=0;
   lang:ILanguage
+  file:File
+  receiptId:string;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -39,7 +41,9 @@ export class ReceiptAddComponent implements OnInit {
     })
   }
 
-  
+  onChange(event){
+    this.file=event.target?.files[0];
+  }
 
   
   add(){
@@ -48,6 +52,20 @@ export class ReceiptAddComponent implements OnInit {
     if(this.receiptAddForm.valid){
       let receiptModel=Object.assign({},this.receiptAddForm.value)
       this.receiptService.add(receiptModel).subscribe(response=>{
+        this.receiptId=response.data;
+        setTimeout(()=>{
+          let model2={
+            receiptId:this.receiptId,
+            image:this.file
+          }
+          console.log(model2)
+          this.receiptService.imageAdd(model2).subscribe(
+            response=>{
+              if (response.success) {
+                
+              }
+            })
+        },4000)
         this.toastrService.success(response.message,"Eklendi")
       },responseError=>{
         if(responseError.error.Errors.length>0){
@@ -60,31 +78,4 @@ export class ReceiptAddComponent implements OnInit {
       this.toastrService.error("Formunuz Eksik","Dikkat")
     }
   }
-  //url; //Angular 8
-	url: any; //Angular 11, for stricter type
-	msg = "";
-	
-	//selectFile(event) { //Angular 8
-	selectFile(event: any) { //Angular 11, for stricter type
-		if(!event.target.files[0] || event.target.files[0].length == 0) {
-			this.msg = 'You must select an image';
-			return;
-		}
-		
-		var mimeType = event.target.files[0].type;
-		
-		if (mimeType.match(/image\/*/) == null) {
-			this.msg = "Only images are supported";
-			return;
-		}
-		
-		var reader = new FileReader();
-		reader.readAsDataURL(event.target.files[0]);
-		
-		reader.onload = (_event) => {
-			this.msg = "";
-			this.url = reader.result; 
-		}
-	}
-
 }

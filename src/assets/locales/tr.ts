@@ -2,6 +2,8 @@
 import { ILanguage } from "./ILanguage";
 
 export class TR implements ILanguage {
+    pdf:string="Pdf";
+    deleteVouncher:string="Silmek istediğine Emin misin "
     receiptDetail:string="Makbuz Detayları"
     addNewEmployee:string="Yeni Personel Ekle";
     vouncherDetail:string="Fiş Detayı";

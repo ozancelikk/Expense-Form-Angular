@@ -24,6 +24,8 @@ export class VouncheraddComponent implements OnInit {
   taxTotal:number=0;
   taxSum:number=0;
   vouncherImage:VoucherImage
+  file:File
+  vouncherId:string;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -37,14 +39,6 @@ export class VouncheraddComponent implements OnInit {
     this.valuechange;
     
   }
-  imageFromGroup(){
-    this.imageAddForm=this.formBuilder.group({
-      vouncherId:[localStorage.getItem("vouncherId")],
-      imagePath:["",Validators.required],
-      dateTime:["",Validators.required],
-    });
-  }
-  
   createVoucherAddForm(){
     this.voucherAddForm=this.formBuilder.group({
       employeeId:[localStorage.getItem("employeeid")],
@@ -65,17 +59,35 @@ export class VouncheraddComponent implements OnInit {
       this.taxTotal=this.total/100*value
       this.taxSum=this.taxTotal+this.total
   }
+
+
+  isAdmin(){
+    if (localStorage.getItem("userId")) {
+      return true
+    }else{
+      return false
+    }
+  }
   
   add(){
-    let voucherModel2=Object.assign({},this.voucherAddForm.value)
-    console.log(voucherModel2)
     if(this.voucherAddForm.valid){
       let voucherModel=Object.assign({},this.voucherAddForm.value)
       this.voucherService.add(voucherModel).subscribe(response=>{
+        this.vouncherId=response.data
+        setTimeout(()=>{
+          let model2={
+            voucherId:this.vouncherId,
+            image:this.file
+          }
+          console.log(model2)
+          this.voucherService.imageAdd(model2).subscribe(
+            response=>{
+              if (response.success) {
+                
+              }
+            })
+        },4000)
         this.toastrService.success(response.message,"Eklendi")
-        setTimeout(function () {
-          window.location.reload();
-        }, 700);
       },responseError=>{
         if(responseError.error.Errors.length>0){
           for (let i = 0; i < responseError.error.Errors.length; i++) {
@@ -88,71 +100,7 @@ export class VouncheraddComponent implements OnInit {
     }
   }
 
-
-  //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!RESİM İŞLEMLERİ!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-  // imageAdd(vouncherImage:VoucherImage){
- 
-  //   this.voucherService.Imageadd(vouncherImage).subscribe(response=>{
-  //     if (response.success) {
-  //       this.toastrService.success(response.message);
-  //     }else{
-  //       this.toastrService.error(response.message);
-  //     }
-  //   })
-  // }
-
-  // imagePath:File
-  // dbImage: any;
-  // postResponse: any;
-  // successResponse: string;
-  // image: any;
-
-  // public onImageUpload(event) {
-  //   this.imagePath = event.target.files[0];
-  // }
-
-
-  // imageUploadAction() {
-  //   const imageFormData = new FormData();
-  //   imageFormData.append('image', this.imagePath, this.imagePath.name);
-
-
-  //   this.httpClient.post('https://localhost:44357/api/VouncherImage/AddImage', imageFormData)
-  //     .subscribe((response) => {
-  //       if (response === 200) {
-  //         this.postResponse = response;
-  //         this.successResponse = this.postResponse.body.message;
-  //       } else {
-  //         this.successResponse = 'Hata var mq';
-  //       }
-  //     }
-  //     );
-  //   }
-
-  // viewImage() {
-  //   this.httpClient.get('http://localhost:8080/get/image/info/' + this.image)
-  //     .subscribe(
-  //       res => {
-  //         this.postResponse = res;
-  //         this.dbImage = 'data:image/jpeg;base64,' + this.postResponse.image;
-  //       }
-  //     );
-  // }
-
-
-  // selectImage(vouncherImage:VoucherImage){
-  //   this.voucherService.Imageadd(vouncherImage).subscribe(response=>{
-  //     this.toastrService.success(response.message,"Eklendi")
-  //   })
-  // }
+  onChange(event){
+    this.file=event.target?.files[0];
+  }
 }
-
-
-
-
-
-
-
-
-

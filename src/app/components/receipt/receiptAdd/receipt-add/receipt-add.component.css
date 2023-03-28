@@ -4,6 +4,9 @@
     padding-top: 5%;
     /* background: linear-gradient(45deg, #0C2081, #2d44c4a2); */
 }
+.form-control{
+    color: black;
+}
 .mb-3{
     width: 40%;
     float: left;
@@ -21,4 +24,15 @@
 input{
     text-align: left;
     height: 50px;
+}
+input{
+    background-color: gray;
+    color: white;
+}
+input:focus{
+    background-color: gray;
+    color: white;
+}
+input::placeholder{
+    color: white;
 }

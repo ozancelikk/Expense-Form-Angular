@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Receipt } from 'src/app/models/receipt/receipt';
+import { ReceiptDetails } from 'src/app/models/receipt/Receiptdetail';
 import { ReceiptImage } from 'src/app/models/receipt/receiptImage';
 import { ReceiptService } from 'src/app/services/receipt/receipt.service';
 
@@ -10,7 +11,7 @@ import { ReceiptService } from 'src/app/services/receipt/receipt.service';
   styleUrls: ['./receipt-detail.component.css']
 })
 export class ReceiptDetailComponent implements OnInit {
-  receipt:Receipt;
+  receiptDetail:ReceiptDetails;
   receiptImage:ReceiptImage[];
 
   constructor(
@@ -26,10 +27,10 @@ export class ReceiptDetailComponent implements OnInit {
   }
 
   getById(id:string){
-    this.receiptService.getById(id).subscribe(response=>{
+    this.receiptService.getReceiptDetailsById(id).subscribe(response=>{
       if (response.success) {
-        this.receipt=response.data
-        console.log(this.receipt)  
+        this.receiptDetail=response.data
+        console.log(this.receiptDetail)  
       }else{
         console.log(response.message)
       }
@@ -49,7 +50,7 @@ export class ReceiptDetailComponent implements OnInit {
   }
   
   getImage(receiptImage:ReceiptImage){
-    let url="https://localhost:44357/Uploads/Receipts/"+receiptImage.imagePath
+    let url="https://localhost:44357/Uploads/Receipt/"+receiptImage.imagePath
     return url;
   }
 
