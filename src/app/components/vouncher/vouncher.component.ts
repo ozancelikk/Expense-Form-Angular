@@ -1,5 +1,5 @@
-import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
-import { ColDef, ColGroupDef, ColumnApi, GridApi, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { CellClickedEvent, ColDef, ColGroupDef, ColumnApi, GridApi, GridReadyEvent, ICellRendererParams, SideBarDef } from 'ag-grid-community';
 import { VouncherService } from 'src/app/services/vouncher/vouncher.service';
 import { ILanguage } from 'src/assets/locales/ILanguage';
 import { Languages } from 'src/assets/locales/languages';
@@ -7,10 +7,9 @@ import { PDFExporter } from 'src/app/services/pdfExporter/pdf-exporter';
 import { ExcelExporter } from 'src/app/services/excelExporter/excel-exporter';
 import { Vouncher } from 'src/app/models/vouncher/vouncher';
 import { VoucherImage } from 'src/app/models/vouncher/voucherImage';
-import { data, param } from 'jquery';
 import { ActivatedRoute } from '@angular/router';
-import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vouncher',
@@ -21,11 +20,13 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   
 })
 export class VouncherComponent implements OnInit {
+  @ViewChild('myTable') table: any;
   lang:ILanguage = Languages.lngs.get(localStorage.getItem("lng"));
   gridApi:GridApi;
   columnApi:ColumnApi;
   vouncherImage:VoucherImage[];
-  vouncher:Vouncher;
+  vouncher:Vouncher[];
+  apiUrlDeleteVouncher="Voucher/Delete?id="
   x=5;
 
   /*-----------------------------------------------------------*/
@@ -42,15 +43,18 @@ export class VouncherComponent implements OnInit {
     }},
     // {field:"expenceId",unSortIcon: true},
     {field:"employee",headerName:this.lang.employeeId,unSortIcon: true,cellRenderer:(param) => { 
-      return  param.data.employee.name
+      console.log(param)
+      return param.data.employee.passwordHash=null, param.data.employee.passwordSalt=null,param.data.employee.name
      }},
-    {field:"vouncherImage",headerName:this.lang.vouncherimage,unSortIcon: true,cellRenderer: (param)=>{
-      return '<a class="btn btn-primary" href="/#/admin/vouncher-details/'+param.data.id+this.lang.vouncherimage+'">Fiş Görseli</a>'
+    {headerName:this.lang.vouncherimage,unSortIcon: true,cellRenderer: (param)=>{
+      // console.log(window.location)
+      return '<a class="btn btn-primary" href="'+window.location.href+'/vouncher-details/'+param.data.id+'">Fiş Görseli</a>'
     },},
     {field:"pay",headerName:this.lang.pay,unSortIcon: true, editable: true,},
     {field:"update",headerName:this.lang.update,unSortIcon: true,cellRenderer: (param)=>{
       return '<a class="btn btn-primary" href="/#/admin/vouncher-update/'+param+'">Update</a>'
     },},
+    {field:"Delete",width:10,headerName:this.lang.delete,filter:false,valueGetter: (params) => {return "Delete";},cellRenderer:() => {return '<mat-icon class="mat-icon material-icons" style="cursor:pointer;color:gray; font-size:20px;" aria-hidden="true">delete_outline</mat-icon>'},onCellClicked:(event: CellClickedEvent) => this.deleteVouncher(event.data.id) },
   ];
   
   public rowSelection = 'multiple';
@@ -72,11 +76,13 @@ export class VouncherComponent implements OnInit {
   /*-----------------------------------------------------------*/
   
   rowDatas:Vouncher[];
-  constructor(private vouncherService:VouncherService, private pdfExporter:PDFExporter,private excelExporter:ExcelExporter,private activatedRoute:ActivatedRoute,public dialog: MatDialog,) { }
-    refresh(params: ICellRendererParams): boolean {
-      throw new Error('Method not implemented.');
-    }
-
+  constructor(
+    private vouncherService:VouncherService, 
+    private pdfExporter:PDFExporter,
+    private excelExporter:ExcelExporter,
+    private toastrService:ToastrService,
+    private activatedRoute:ActivatedRoute,
+    public dialog: MatDialog,) { }
   ngOnInit(): void {
     
   }
@@ -86,39 +92,68 @@ export class VouncherComponent implements OnInit {
     console.log(params)
     this.gridApi=params.api;
     this.columnApi=params.columnApi;
-    if(localStorage.getItem("employeeid")){
-      this.vouncherService.getAllByEmployeeId(localStorage.getItem("employeeid")).subscribe(response => {
-        if (response.success) {
-  
-          this.rowData = response.data
-          console.log(response)
-        }else{
-          console.log(response)
-        }
-      },errorResponse => {
-        console.log(errorResponse)
-      })
-    }else{
-      this.vouncherService.getAllVoucher("Voucher/VouncherGetDto").subscribe(response => {
-        if (response.success) {
-          this.rowData = response.data
-          console.log(response)
-        }else{
-          console.log(response)
-        }
-      },errorResponse => {
-        console.log(errorResponse)
-      })
-    }  
+    params.api.sizeColumnsToFit();
+    this.getall()
   }
+  
+getall(){
+  if(localStorage.getItem("employeeid")){
+    this.vouncherService.getDetailsByEmployeeId(localStorage.getItem("employeeid")).subscribe(response => {
+      if (response.success) {
 
+        this.rowData = response.data
+        console.log(response)
+      }else{
+        console.log(response)
+      }
+    },errorResponse => {
+      console.log(errorResponse)
+    })
+  }else{
+    this.vouncherService.getAllVoucher("Voucher/VouncherGetDto").subscribe(response => {
+      if (response.success) {
+        this.rowData = response.data
+        console.log(response)
+      }else{
+        console.log(response)
+      }
+    },errorResponse => {
+      console.log(errorResponse)
+    })
+  }  
+}
   onCellClicked(data,id:string){
     this.vouncherService.getByVouncherId(id).subscribe(response=>{
       let temp=response.data.id
       return "vouncher-details/" + temp; 
     })
     
-  }  
+  }
+  
+  deleteVouncher(vouncherId:string){
+    var vouncher=this.rowData.filter((v)=>v.id==vouncherId)[0];
+    const dialogRef=this.dialog.open(VouncherDeleteDialogTemplate,{
+      width:'450px',
+      data:vouncher,
+    });
+
+    dialogRef.afterClosed().subscribe((result)=>{
+      if (result) {
+        this.vouncherService.getRequest(this.apiUrlDeleteVouncher+vouncherId).subscribe(
+          (response)=>{
+            if (response.success) {
+              this.toastrService.success(response.message)
+              this.getall();
+            }else{
+              this.toastrService.info(response.message)
+            }
+          },errResponse=>{
+            this.toastrService.error(errResponse.error.message)
+          }
+        )
+      }
+    });
+  }
 
   openPDF(){
     this.pdfExporter.exportPDF(this.gridApi,this.columnApi); 
@@ -128,4 +163,18 @@ export class VouncherComponent implements OnInit {
     this.excelExporter.excelExporter(this.gridApi,this.columnApi)
   }
 
+}
+
+@Component({
+  selector: 'vouncher-delete-dialog-template',
+  templateUrl: 'vouncher-delete-dialog-template.html',
+})
+export class VouncherDeleteDialogTemplate {
+  lang:ILanguage
+  constructor(
+    public dialogRef: MatDialogRef<VouncherDeleteDialogTemplate>,
+    @Inject(MAT_DIALOG_DATA) public data: Vouncher
+  ) {
+    this.lang = Languages.lngs.get(localStorage.getItem('lng'));
+  }
 }

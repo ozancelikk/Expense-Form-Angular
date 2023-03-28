@@ -92,6 +92,7 @@ const routes: Routes = [
       {path:"vouncher-update/:id",component:UpdateVouncherComponent,canActivate:[EmployeeLoginGuard]},    
       {path:"receipt",component:ReceiptComponent, data:{breadcrumb: lang.receipt},canActivate:[EmployeeLoginGuard]},
       {path:"receipt-add",component:ReceiptAddComponent,canActivate:[EmployeeLoginGuard]},
+      {path:"receipt-details/:id",component:ReceiptDetailComponent,data:{breadcrumb: lang.receiptDetail},canActivate:[LoginGuard]},
       {path:"payment",component:PaymentComponent, data:{breadcrumb: lang.payment},canActivate:[EmployeeLoginGuard]},
       {path:"settings", component:EmployeeSettingsComponent,data:{breadcrumb:lang.settings},canActivate:[EmployeeLoginGuard],children:[
         {path:"customer-informations",component:CustomerInformationsComponent, data:{breadcrumb: lang.newdevice},canActivate:[LoginGuard]}, 

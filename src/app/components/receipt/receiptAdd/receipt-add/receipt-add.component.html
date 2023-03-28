@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" id="body">
   <div class="left">
 <form [formGroup]="receiptAddForm" class="form">
 
@@ -29,7 +29,7 @@
     <div class="mb-3">
         <label for="documentDescription">{{lang.receiptDescription}}</label>
         <div class="form-group">
-          <input
+          <input 
            type="text"
            id="documentDescription"
            formControlName="documentDescription"
@@ -79,21 +79,15 @@
   </div>
       <div class="mb-3">
         <label for="receiptImage">{{lang.receiptImage}}</label>
-        <!-- <div class="form-group">
+        <div class="form-group">
           <input
             type="file"
             id="receiptImage"
+            (change)="onChange($event)"
             formControlName="receiptImage"
             class="form-control"
             placeholder="{{lang.receiptImage}}"
           />
-        </div> -->
-        <div style="text-align:center">
-          <div [innerHtml]='msg' *ngIf="msg" style="color: red;"></div>
-          <div><img [src]="url" *ngIf="url" style="width: 200px; height: 200px;"></div>
-          <p>
-            <input type="file" (change)="selectFile($event)"formControlName="receiptImage"placeholder="{{lang.receiptImage}}"class="form-control">
-          </p>
         </div>
       </div>
       <div class="mb-3">
