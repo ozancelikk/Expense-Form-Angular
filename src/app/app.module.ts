@@ -61,6 +61,7 @@ import { VouncherDetailComponent } from './components/vouncher/vouncher-detail/v
 import { EmployeeChangePasswordComponent } from './components/settings/employee/employee-change-password/employee-change-password.component';
 import { UpdateVouncherComponent } from './components/vouncher/update-vouncher/update-vouncher.component';
 import { ReceiptDetailComponent } from './components/receipt/receipt-detail/receipt-detail.component';
+import { UserpermissionsComponent } from './components/userpermissions/userpermissions.component';
 
 
 
@@ -121,6 +122,7 @@ import { ReceiptDetailComponent } from './components/receipt/receipt-detail/rece
        EmployeeChangePasswordComponent,
        UpdateVouncherComponent,
        ReceiptDetailComponent,
+       UserpermissionsComponent,
 
   
   ],
