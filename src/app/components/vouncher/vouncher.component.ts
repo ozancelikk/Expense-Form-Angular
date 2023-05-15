@@ -50,7 +50,6 @@ export class VouncherComponent implements OnInit {
       // console.log(window.location)
       return '<a class="btn btn-primary" href="'+window.location.href+'/vouncher-details/'+param.data.id+'">Fiş Görseli</a>'
     },},
-    {field:"pay",headerName:this.lang.pay,unSortIcon: true, editable: true,},
     {field:"update",headerName:this.lang.update,unSortIcon: true,cellRenderer: (param)=>{
       return '<a class="btn btn-primary" href="/#/admin/vouncher-update/'+param+'">Update</a>'
     },},

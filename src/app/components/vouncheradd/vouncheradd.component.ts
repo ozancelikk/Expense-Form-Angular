@@ -51,22 +51,12 @@ export class VouncheraddComponent implements OnInit {
       taxTotal:[this.taxTotal,Validators.required],
       taxSum:[this.taxSum,Validators.required],
       vouncherImage:["",Validators.required],
-      pay:["",Validators.required],
     })
   }
   
   valuechange(value:any){
       this.taxTotal=this.total/100*value
       this.taxSum=this.taxTotal+this.total
-  }
-
-
-  isAdmin(){
-    if (localStorage.getItem("userId")) {
-      return true
-    }else{
-      return false
-    }
   }
   
   add(){

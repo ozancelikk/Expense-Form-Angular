@@ -32,7 +32,7 @@ export class ReceiptComponent implements OnInit {
     {field:"address",headerName:this.lang.address,unSortIcon: true},
     {headerName:this.lang.receiptImage,unSortIcon: true,cellRenderer: (param)=>{
       console.log(param)
-      return '<a class="btn btn-primary" href="/#/admin/receipt-details/'+param.data.id+'">Makbuz Görseli</a>'
+      return '<a class="btn btn-primary"href="'+window.location.href+'/receipt-details/'+param.data.id+'">Makbuz Görseli</a>'
     },},
     {field:"Delete",width:10,headerName:this.lang.delete,filter:false,valueGetter: (params) => {return "Delete";},cellRenderer:() => {return '<mat-icon class="mat-icon material-icons" style="cursor:pointer;color:gray; font-size:20px;" aria-hidden="true">delete_outline</mat-icon>'},onCellClicked:(event: CellClickedEvent) => this.deleteReceipt(event.data.id) },
   ];

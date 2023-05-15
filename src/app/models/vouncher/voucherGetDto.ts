@@ -12,5 +12,4 @@ export interface VoucherGetDto{
     expenceId:string;
     employee:Employee;
     vouncherImage:string
-    pay:string;
 }

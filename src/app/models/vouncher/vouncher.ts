@@ -10,5 +10,4 @@ export interface Vouncher{
     expenceId:string;
     employeeId:string;
     vouncherImage:string
-    pay:string;
 }

@@ -17,7 +17,7 @@
           <div class="form-group">
             <input
             
-              type="number"
+              type="text"
               id="amount"
               formControlName="amount"
               class="form-control"
@@ -30,9 +30,10 @@
         <label for="paymentChoices">{{lang.paymentChoices}}</label>
         <div class="form-group">
           <select class="form-select" aria-label="Default select example" formControlName="paymentChoices" class="form-control" id="secenek" >
-            <option>{{lang.cash}}</option>
-            <option>{{lang.wage}}</option>
-            <option>{{lang.transfer}}</option>
+            <option value="" selected>ödeme tipi seç</option>
+            <option [ngValue]="lang.cash">{{lang.cash}}</option>
+            <option [ngValue]="lang.wage">{{lang.wage}}</option>
+            <option [ngValue]="lang.transfer">{{lang.transfer}}</option>
           </select>
         </div>
      </div>

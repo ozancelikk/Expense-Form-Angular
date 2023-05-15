@@ -119,15 +119,6 @@
           />
         </div>
       </div>
-      <div class=" mb-3" *ngIf="isAdmin()">
-        <div class="form-group">
-          <label for="pay">{{lang.pay}}</label> <br>
-          <label class="switch">
-            <input type="checkbox" formControlName="pay" >
-            <span class="slider round"></span>
-          </label>
-        </div> 
-    </div>
       <div class="mb-3">
         <button type="button" class="btn btn-danger" id="buton" (click)="add()">{{lang.add}}</button>
         <!-- <button type="button" class="btn btn-danger" id="buton" (click)="imageAdd(vouncherImage)">Hi</button> -->
@@ -137,3 +128,4 @@
   <div class="right">
     <app-vouncher></app-vouncher>
 </div>
+

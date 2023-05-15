@@ -27,6 +27,9 @@ export class EmployeeSidebarComponent implements OnInit {
       {name:this.lang.receipt,path:"/employee/receipt",icon:"receipt_long"},
       {name:this.lang.receiptadd,path:"/employee/receipt-add",icon:"add"},
     ]},
+    {name:this.lang.payment,icon:"article3",children:[
+      {name:this.lang.payment,path:"/employee/payment",icon:"receipt_long"},
+    ]},
   ]
   constructor(private toastrService:ToastrService,private renderer: Renderer2, private languageService:LanguageService) { 
     this.filterMenus = this.menus
